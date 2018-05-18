@@ -1,0 +1,59 @@
+create database auction;
+use auction
+
+
+
+insert into manager values(1,'fjc','123'); 
+
+//user table,state(0,not log in;1,logged-in)
+create table user(
+id int primary key auto_increment,
+username varchar(32),
+pwd varchar(32),
+address varchar(32),
+identification_no int,
+age int,
+hobby varchar(32)
+);
+
+insert into user(username,pwd,address) values('fjc','123','aaa'); 
+insert into user(username,pwd,address) values(1,'123','aaa'); 
+insert into user(username,pwd,address) values(2,'123','aaa'); 
+
+//auction product table,state(1:auction ongoing(default);0£ºsold£©
+create table product(
+id int primary key auto_increment,
+productName varchar(32),
+productDesc varchar(32),
+startTime varchar(32),
+endTime varchar(32),
+img varchar(32),
+saleName varchar(32),
+buyName varchar(32),
+startPrice int,
+curPrice int,
+state boolean
+);
+
+insert into product(productname,productdesc,starttime,endtime,img,salename,startprice,state) 
+values('iphone','make phone calls',now(),date_add(now(), INTERVAL 1 day),"./images/1.jpg","fjc",100,1);
+
+insert into product(productname,productdesc,starttime,endtime,img,salename,startprice,state,buyname,
+curprice) values('iphone','make phone calls',now(),date_add(now(), INTERVAL 1 day),"./images/1.jpg","fjc",100,0,1,200);
+
+//bid record table
+create table record(
+id int primary key auto_increment,
+productid int,
+productname varchar(32), 
+buyName varchar(32),
+price int 
+);
+insert into record(productid,buyName,price) values(1,'2',110);
+insert into record(productid,buyName,price) values(1,'2',120);
+insert into record(productid,buyName,price) values(1,'2',130);
+//table association£ºrecord.productid--product.id 
+
+update product set buyname="fjc",curprice=200,curtime=now() where id=5;
+
+update product set buyname=?,curprice=?,state=0 where id=?
